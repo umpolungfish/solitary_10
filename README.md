@@ -27,4 +27,4 @@ Of the eight candidates, four die immediately (their denominators carry a factor
 
 ---
 
-*Structural type: $\langle D_\infty; T_\bowtie; R_\leftrightarrow; P_\pm; F_\hbar; K_\text{slow}; G_\aleph; \Gamma_\text{seq}; \Phi_c; H_2; n{:}m; \Omega_{\mathbb{Z}_2} \rangle$*
+Structural type: $\langle D_\infty; T_\bowtie; R_\leftrightarrow; P_\pm; F_\hbar; K_\text{slow}; G_\aleph; \Gamma_\text{seq}; \Phi_c; H_2; n{:}m; \Omega_{\mathbb{Z}_2} \rangle$
