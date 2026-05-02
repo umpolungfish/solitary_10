@@ -1,1 +1,0 @@
-# solitary10_proof
