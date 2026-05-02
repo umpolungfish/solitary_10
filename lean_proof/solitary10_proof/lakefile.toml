@@ -1,0 +1,14 @@
+name = "solitary10_proof"
+version = "0.1.0"
+defaultTargets = ["solitary10_proof"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+
+[[lean_lib]]
+name = "Solitary10Proof"
+
+[[lean_exe]]
+name = "solitary10_proof"
+root = "Main"
