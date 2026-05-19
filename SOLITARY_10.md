@@ -1,8 +1,10 @@
 # Proof That 10 Is Solitary
 
-I came to this problem expecting to find a counterexample. The small solitary numbers — 1, 2, 3, 4, 5, 7, 8, 9 — form a sparse set, and the abundancy index $9/5$ did not look especially forbidding. The surprise is that the proof closes around a single candidate and locks: every alternative is killed, one by one, by a constraint that seems too weak to do the job until you actually compute through each branch.
+## Abstract
 
-## 1. What the Problem Demands
+We approached this problem with an impression we would find a counterexample. Why not, after all? The small solitary numbers — $1,2,...,9$ — form a sparse set, and the abundancy index $9/5$ did not look especially forboding. Of course, in the end the proof spirals around a singular candidate and acquires a lock on its intended target. One by one, every alternative --- every single one --- is  nixed. And all this carnage from a constraint that seems too weak to land the fatal blows--- until you actually compute through each branch.
+
+### What the Problem Demands
 
 Let $\sigma(n)$ denote the sum of all positive divisors of $n$. The **abundancy index** of $n$ is $\sigma(n)/n$. A positive integer $n$ is called **solitary** if it is the unique positive integer with its abundancy index. For $n = 10$:
 
@@ -14,7 +16,7 @@ The function $\sigma$ is multiplicative: if $\gcd(a,b) = 1$, then $\sigma(ab) = 
 
 All of this is standard. The difficulty is that $9/5$ is a rational number in lowest terms, and abundancy indices carry a rigid denominator-divisibility constraint. But the constraint alone is not enough — it generates an infinite space of candidates when $m$ is factored as $2^a \cdot 5^b \cdot r$ with $\gcd(r,10) = 1$. We need to show that infinity collapses to finitely many candidates and that all but one die.
 
-## 2. The Denominator Constraint and Why $b = 0$ Fails
+### The Denominator Constraint and Why $b = 0$ Fails
 
 The critical tool is the **denominator-divisibility lemma**: if $\sigma(r)/r = A/B$ with $\gcd(A,B) = 1$, then every prime divisor of $B$ divides $r$. Moreover, if $p \mid B$ and $p \mid r$, writing $r = p \cdot s$ gives
 
@@ -24,19 +26,21 @@ and the denominator of this new fraction (in lowest terms) must divide $s$.
 
 Now factor any candidate $m$ as $m = 2^a \cdot 5^b \cdot r$, where $a,b \ge 0$ and $\gcd(r,10) = 1$. Multiplicativity gives $\sigma(m) = \sigma(2^a)\,\sigma(5^b)\,\sigma(r)$.
 
-**Case $b = 0$.** Then $\sigma(5^0) = 1$, and $5\sigma(m) = 9m$ becomes
+**Case $b = 0$.** Then $\sigma(5^0) = 1$, and $5\sigma(m) = 9m$ becomes,
 
 $$5(2^{a+1} - 1)\,\sigma(r) = 9 \cdot 2^a \cdot r,$$
 
-yielding
+yielding,
 
 $$\frac{\sigma(r)}{r} = \frac{9 \cdot 2^a}{5(2^{a+1} - 1)}.$$
 
 The lower bound $\sigma(r)/r \ge 1$ forces $2^a \le 5$, so $a \in \{0,1,2\}$. The three candidates for $\sigma(r)/r$ in lowest terms are $9/5$, $6/5$, and $36/35$. Each denominator is divisible by $5$. But $r$ is coprime to $10$, so $r$ cannot contain the factor $5$ that the denominator-divisibility lemma demands. **No solution with $b = 0$.** This case closes cleanly.
 
-It is the next case where the proof earns its length.## 3. The $b \ge 1$ Case: Abundance of Apparent Possibility
+It is the next case where the proof earns its length.
 
-When $b \ge 1$, $\sigma(5^b) = (5^{b+1} - 1)/4$. The equation $5\sigma(m) = 9m$ expands to
+### The $b \ge 1$ Case: Abundance of Apparent Possibility
+
+When $b \ge 1$, $\sigma(5^b) = (5^{b+1} - 1)/4$. The equation $5\sigma(m) = 9m$ expands to,
 
 $$5 \cdot (2^{a+1} - 1) \cdot \frac{5^{b+1} - 1}{4} \cdot \sigma(r) = 9 \cdot 2^a \cdot 5^b \cdot r.$$
 
@@ -67,7 +71,7 @@ I want to pause on what just happened. We started with an equation that, in prin
 
 The eight that survive are the ones we must now kill.
 
-## 4. Candidates with Immediate Denominator Failure
+### Candidates with Immediate Denominator Failure
 
 Four candidates die on first contact with the denominator-divisibility lemma. Since $\gcd(r,10) = 1$, any candidate whose $\sigma(r)/r$ has denominator divisible by $2$ or $5$ cannot correspond to any integer $r$.
 
@@ -76,9 +80,11 @@ Four candidates die on first contact with the denominator-divisibility lemma. Si
 - $(0,5)$: $625/434$, denominator $434 = 2 \cdot 7 \cdot 31$ — dead.
 - $(0,7)$: $46875/32552$, denominator $32552 = 2^3 \cdot 13 \cdot 313$ — dead.
 
-The surviving candidates are $(0,2)$, $(0,4)$, $(0,6)$, and $(1,1)$. The last one is the solution $m = 10$: $\sigma(r)/r = 1$ forces $r = 1$, yielding $m = 2^1 \cdot 5^1 = 10$. The other three require deeper elimination.## 5. The Hardest Cases
+The surviving candidates are $(0,2)$, $(0,4)$, $(0,6)$, and $(1,1)$. The last one is the solution $m = 10$: $\sigma(r)/r = 1$ forces $r = 1$, yielding $m = 2^1 \cdot 5^1 = 10$. The other three require deeper elimination.
 
-### 5.1 Candidate $(0,2)$
+### The Hardest Cases
+
+### Candidate $(0,2)$
 
 Here $\sigma(r)/r = 45/31$ with prime denominator $31$. The lemma forces $31 \mid r$. Write $r = 31 \cdot s$. Then
 
@@ -88,7 +94,7 @@ The denominator $32 = 2^5$ must divide $s$, contradicting $\gcd(s,10) = 1$. Dead
 
 The reasoning is swift, but notice why it works: the denominator-divisibility lemma is iterable. It does not merely reject a candidate — it chases the contradiction into smaller integers. This candidate fails not because $45/31$ is impossible as an abundancy index, but because the denominator's prime factor $31$ triggers a cascade. The number $31$ is unremarkable; what matters is that $\sigma(31) = 32$ introduces a factor of $2$ into the denominator of the reduced fraction at the next level. The cascade is sensitive to the *specific* prime, not just its size.
 
-### 5.2 Candidate $(0,4)$
+### Candidate $(0,4)$
 
 $\sigma(r)/r = 1125/781$. The denominator $781 = 11 \cdot 71$. We must consider both prime factors.
 
@@ -108,7 +114,7 @@ Both branches die. The candidate is eliminated.
 
 There is a structural observation worth making explicit: the branching here is not parallel. The lemma does not tell us *which* prime divisor of the denominator initiated the cascade — we must try both. In every branch, the cascade terminates in a contradiction within one step. It is tempting to conjecture that this always happens for the solitary numbers, but I do not know whether it holds in general. The proof for $10$ works because the cascades are uniformly short.
 
-### 5.3 Candidate $(0,6)$
+### Candidate $(0,6)$
 
 $\sigma(r)/r = 28125/19531$. The denominator $19531$ is prime. Write $r = 19531 \cdot s$.
 
@@ -116,7 +122,7 @@ $$\frac{\sigma(s)}{s} = \frac{28125 \cdot 19531}{19531 \cdot 19532} = \frac{2812
 
 The denominator contains $2^2$ — contradiction. Dead.
 
-## 6. The Proof Closes
+### The Proof Closes
 
 Every candidate has been examined:
 
@@ -133,7 +139,9 @@ Every candidate has been examined:
 
 The only solution to $\sigma(m)/m = 9/5$ is $m = 10$. Therefore $10$ is solitary.
 
-The proof's engine is the iterated denominator-divisibility lemma, applied across a finite candidate table generated by the inequality $\sigma(r)/r \ge 1$. The inequality prunes infinity to finiteness; the lemma prunes finiteness to uniqueness. Both are necessary. Neither alone suffices.## 7. What This Proof Leaves Open
+The proof's engine is the iterated denominator-divisibility lemma, applied across a finite candidate table generated by the inequality $\sigma(r)/r \ge 1$. The inequality prunes infinity to finiteness; the lemma prunes finiteness to uniqueness. Both are necessary. Neither alone suffices.
+
+### What This Proof Leaves Open
 
 The proof I expected to find would have been a direct application of a general theorem: "if $n$ satisfies condition $C$, then $n$ is solitary." No such theorem exists. The solitude of each small number is proved by a bespoke argument — different denominators, different cascades, different branch structures. What unifies them is the denominator-divisibility lemma, but that lemma is a tool, not a theory.
 
