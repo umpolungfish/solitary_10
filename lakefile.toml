@@ -2,12 +2,30 @@ name = "solitary10_proof"
 version = "0.1.0"
 defaultTargets = ["solitary10_proof"]
 
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+
 [[require]]
 name = "mathlib"
-git = "https://github.com/leanprover-community/mathlib4.git"
+scope = "leanprover-community"
+rev = "v4.28.0"
+
+# Reconnection to the canonical Imscribing library (main repo).
+# The AxTest probes import Imscribing.Primitives.* / Imscribing.Consciousness,
+# which live only there.
+[[require]]
+name = "imscribing-lean"
+path = "../../p4rakernel/p4ramill"
 
 [[lean_lib]]
 name = "Solitary10Proof"
+globs = [
+  "Solitary10Proof",
+  "Solitary10Proof.Basic",
+  "AxTest6", "AxTest7", "AxTest8", "AxTest9",
+  "AxTest10", "AxTest11", "AxTest12", "AxTest13"
+]
 
 [[lean_exe]]
 name = "solitary10_proof"

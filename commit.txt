@@ -1,0 +1,3 @@
+I update the solitary ten project inputs
+
+I reconnect the project configuration and package manifest to the current Lean toolchain.
